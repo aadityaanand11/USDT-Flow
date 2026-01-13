@@ -1,0 +1,79 @@
+{
+  "name": "Transaction",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "buy",
+        "sell"
+      ],
+      "description": "Transaction type"
+    },
+    "amount_inr": {
+      "type": "number",
+      "description": "Amount in INR"
+    },
+    "amount_usdt": {
+      "type": "number",
+      "description": "Amount in USDT"
+    },
+    "exchange": {
+      "type": "string",
+      "description": "Target exchange (optional for sell transactions)"
+    },
+    "rate": {
+      "type": "number",
+      "description": "Exchange rate at time of transaction"
+    },
+    "platform_fee": {
+      "type": "number",
+      "description": "Platform fee charged in INR"
+    },
+    "network_fee": {
+      "type": "number",
+      "description": "Network/gas fee in INR"
+    },
+    "total_fee": {
+      "type": "number",
+      "description": "Total fees (platform + network)"
+    },
+    "net_amount": {
+      "type": "number",
+      "description": "Net amount after fees"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "pending",
+      "description": "Transaction status"
+    },
+    "bank_account": {
+      "type": "string",
+      "description": "Bank account identifier"
+    },
+    "exchange_wallet": {
+      "type": "string",
+      "description": "Exchange wallet address"
+    }
+  },
+  "required": [
+    "type",
+    "amount_inr",
+    "amount_usdt",
+    "rate"
+  ],
+  "rls": {
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
