@@ -1,0 +1,40 @@
+{
+  "name": "PriceAlert",
+  "type": "object",
+  "properties": {
+    "target_rate": {
+      "type": "number",
+      "description": "Target USDT/INR rate"
+    },
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "above",
+        "below"
+      ],
+      "description": "Alert when price goes above or below"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Alert active status"
+    },
+    "notified": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether user was notified"
+    }
+  },
+  "required": [
+    "target_rate",
+    "alert_type"
+  ],
+  "rls": {
+    "read": {
+      "created_by": "{{user.email}}"
+    },
+    "write": {
+      "created_by": "{{user.email}}"
+    }
+  }
+}
